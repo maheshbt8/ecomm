@@ -1,11 +1,10 @@
 <!-- PAGE -->
 <section class="page-section category_menu">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row main-slider-row flex-no-gutters">
-            
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <div>
                 <div class="main-slider">
-                    <div class="custom1  owl-carousel" id="main-slider">
+                    <div class="owl-carousel" id="main-slider">
                         <?php
                         $this->db->order_by("slides_id", "desc");
                         $this->db->where("uploaded_by", "admin");
@@ -43,18 +42,6 @@
     </div>
 </section>
 <!-- /PAGE -->
-<style>
-.container-fluid {
-     padding-right: 0px;
-    padding-left: 0px; 
-    margin-right: auto;
-    margin-left: auto;
-}
-.category_menu {
-    padding-top: 0px;
-   
-}
-</style>
 
 <script>
     $(document).ready(function(){

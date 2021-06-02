@@ -1,52 +1,56 @@
 <!-- PAGE -->
-<?php
-	$this->db->where("place", "after_slider");
-	$this->db->where("status", "ok");
-	$banners=$this->db->get('banner')->result_array();
-	$count=count($banners);
-	if($count==1){
-		$md=12;
-		$sm=12;
-		$xs=12;
-	}elseif($count==2){
-		$md=6;
-		$sm=6;
-		$xs=6;
-	}elseif($count==3){
-		$md=4;
-		$sm=4;
-		$xs=12;
-	}
-	elseif($count==4){
-		$md=3;
-		$sm=6;
-		$xs=6;
-	}
-	
-	if($count!==0){
-?>
-<section class="page-section" style="padding-top: 0px">
+<?php if ($this->db->get_where('general_settings', array('general_settings_id' => '58'))->row()->value == 'ok'and $this->db->get_where('general_settings', array('general_settings_id' => '81'))->row()->value == 'ok'){ ?>
+<section class="page-section image testimonials vendors image_delay" data-src="<?php echo base_url(); ?>uploads/others/parralax_vendor.jpg"  style="background: url(<?php echo img_loading(); ?>) center top no-repeat; background-attachment:fixed; background-size:cover;">
     <div class="container">
-    	<div class="row">
-            <?php
-            foreach($banners as $row){
-            ?>
-            <div class="col-md-<?php echo $md; ?> col-sm-<?php echo $sm; ?> col-xs-<?php echo $xs; ?>">
-                <div class="thumbnail my-2 no-scale no-border no-padding thumbnail-banner size-1x<?php echo $count; ?>">
-                    <div class="media">
-                        <a class="media-link" href="<?php echo $row['link']; ?>">
-                            <div class="img-bg image_delay" data-src="<?php echo $this->crud_model->file_view('banner',$row['banner_id'],'','','no','src','','',$row['image_ext']) ?>" style="background-image: url('<?php echo img_loading(); ?>')"></div>
-                        </a>
+        <h2 class="section-title section-title-lg">
+            <span>
+             	<?php echo $this->db->get_where('ui_settings',array('ui_settings_id' => 17))->row()->value;?>
+            </span>
+        </h2>
+        <div class="partners-carousel">
+            <div class="owl-carousel partners">
+                <?php
+					$limit =  $this->db->get_where('ui_settings',array('ui_settings_id' => 21))->row()->value;
+                    $this->db->limit($limit);
+                    $this->db->order_by("vendor_id", "desc");
+                    $vendors=$this->db->get('vendor')->result_array();
+                    foreach($vendors as $row){
+                ?>
+                <div class="p-item p-item-type-zoom" style="padding:5px;">
+                    <a href="<?php echo base_url(); ?>home/vendor_profile/<?php echo $row['vendor_id']; ?>" class="p-item-hover">
+                        <div class="p-item-info">
+                            <div class="p-headline">
+                                <span><?php echo $row['name']; ?></span>
+                                <div class="p-line"></div>
+                                <div class="p-btn">
+                                    <button type="button" class="btn  btn-theme-transparent btn-theme-xs">
+                                    	<?php echo translate('visit'); ?>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-mask"></div>
+                    </a>
+                    <div class="p-item-img">
+                        <?php
+                        if(!file_exists('uploads/vendor_logo_image/logo_'.$row['vendor_id'].'.png')){
+                        ?>
+                        <img  class="image_delay" src="<?php echo img_loading(); ?>" data-src="<?php echo base_url(); ?>uploads/vendor_logo_image/default.jpg" alt="">  
+                        <?php
+                            } else {
+                        ?>
+                        <img  class="image_delay" src="<?php echo img_loading(); ?>" data-src="<?php echo base_url(); ?>uploads/vendor_logo_image/logo_<?php echo $row['vendor_id']; ?>.png" />
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
+                <?php
+                    }
+                ?>
             </div>
-            <?php
-            }
-            ?>
         </div>
     </div>
 </section>
-<?php
-	}
-?>
 <!-- /PAGE -->
+<?php } ?>
