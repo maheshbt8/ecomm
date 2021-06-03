@@ -47,11 +47,13 @@
 							<?php
 								foreach($footer_category as $row){
 									if($this->crud_model->if_publishable_category($row)){
+										
 							?>
 								<li>
 									<a href="<?php echo base_url(); ?>home/category/<?php echo $row; ?>">
 										<?php
 											echo $this->crud_model->get_type_name_by_id('category',$row,'category_name');
+										
 										?>
 									</a>
 								</li>

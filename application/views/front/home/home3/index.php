@@ -29,13 +29,7 @@
 		}
 	}
 ?>
-<?php 
-	if ($this->crud_model->get_type_name_by_id('general_settings','58','value') == 'ok') {
-		if($this->crud_model->get_type_name_by_id('ui_settings','25','value') == 'ok'){
-			include 'vendors.php';
-		}
-	}
-?>
+
 <?php 
 	include 'category_products.php';
 ?>
