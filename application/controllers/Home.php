@@ -3093,6 +3093,259 @@ class Home extends CI_Controller
         }
     }
 
+
+      /* FUNCTION: Concerning Login */
+      function supplier_logup($para1 = "", $para2 = "")
+      {
+          if ($this->crud_model->get_settings_value('general_settings', 'captcha_status', 'value') == 'ok') {
+              $this->load->library('recaptcha');
+          }
+          $this->load->library('form_validation');
+          if ($para1 == "add_info") {
+              $msg = '';
+              $this->load->library('form_validation');
+              $safe = 'yes';
+              $char = '';
+              foreach ($_POST as $k => $row) {
+                  if (preg_match('/[\'^":()}{#~><>|=¬]/', $row, $match)) {
+                      if ($k !== 'password1' && $k !== 'password2') {
+                          $safe = 'no';
+                          $char = $match[0];
+                      }
+                  }
+              }
+  
+              $this->form_validation->set_rules('name', 'First Name', 'required');
+              $this->form_validation->set_rules('email', 'Email', 'valid_email|required|is_unique[vendor.email]', array('required' => 'You have not provided %s.', 'is_unique' => 'This %s already exists.'));
+              $this->form_validation->set_rules('password1', 'Password', 'required|matches[password2]');
+              $this->form_validation->set_rules('password2', 'Confirm Password', 'required');
+              $this->form_validation->set_rules('address1', 'Address Line 1', 'required');
+              $this->form_validation->set_rules('display_name', 'Display Name', 'required');
+              $this->form_validation->set_rules('state', 'State', 'required');
+              $this->form_validation->set_rules('country', 'Country', 'required');
+              $this->form_validation->set_rules('city', 'City', 'required');
+              $this->form_validation->set_rules('zip', 'Zip', 'required');
+              $this->form_validation->set_rules('terms_check', 'Terms & Conditions', 'required', array('required' => translate('you_must_agree_with_terms_&_conditions')));
+              if ($this->form_validation->run() == FALSE) {
+                  echo validation_errors();
+              } else {
+                  if ($safe == 'yes') {
+                      if ($this->crud_model->get_settings_value('general_settings', 'captcha_status', 'value') == 'ok') {
+                          $captcha_answer = $this->input->post('g-recaptcha-response');
+                          $response = $this->recaptcha->verifyResponse($captcha_answer);
+                          if ($response['success']) {
+                              $data['name'] = $this->input->post('name');
+                              $data['email'] = $this->input->post('email');
+                              $data['address1'] = $this->input->post('address1');
+                              $data['address2'] = $this->input->post('address2');
+                              $data['company'] = $this->input->post('company');
+                              $data['display_name'] = $this->input->post('display_name');
+                              $data['state'] = $this->input->post('state');
+                              $data['country'] = $this->input->post('country');
+                              $data['city'] = $this->input->post('city');
+                              $data['zip'] = $this->input->post('zip');
+                              $data['create_timestamp'] = time();
+                              $data['approve_timestamp'] = 0;
+                              $data['approve_timestamp'] = 0;
+                              $data['membership'] = 0;
+                              $data['status'] = 'pending';
+                              $data['created_by'] = $this->input->post('created_user');
+                              if ($this->input->post('password1') == $this->input->post('password2')) {
+                                  $password = $this->input->post('password1');
+                                  $data['password'] = sha1($password);
+                                  $this->db->insert('vendor', $data);
+                                  $msg = 'done';
+                                  if ($this->email_model->account_opening('vendor', $data['email'], $password) == false) {
+                                      $msg = 'done_but_not_sent';
+                                  } else {
+                                      $msg = 'done_and_sent';
+                                  }
+                              }
+                              echo $msg;
+                          } else {
+                              echo translate('please_fill_the_captcha');
+                          }
+                      } else {
+                          $data['name'] = $this->input->post('name');
+                          $data['email'] = $this->input->post('email');
+                          $data['address1'] = $this->input->post('address1');
+                          $data['address2'] = $this->input->post('address2');
+                          $data['company'] = $this->input->post('company');
+                          $data['display_name'] = $this->input->post('display_name');
+                          $data['state'] = $this->input->post('state');
+                          $data['country'] = $this->input->post('country');
+                          $data['city'] = $this->input->post('city');
+                          $data['zip'] = $this->input->post('zip');
+                          $data['create_timestamp'] = time();
+                          $data['approve_timestamp'] = 0;
+                          $data['approve_timestamp'] = 0;
+                          $data['membership'] = 0;
+                          $data['status'] = 'pending';
+                          $data['created_by'] = $this->input->post('created_user');
+                          if ($this->input->post('password1') == $this->input->post('password2')) {
+                              $password = $this->input->post('password1');
+                              $data['password'] = sha1($password);
+                              $this->db->insert('vendor', $data);
+                              $msg = 'done';
+                              if ($this->email_model->account_opening('vendor', $data['email'], $password) == true) {
+                                  if ($this->email_model->vendor_reg_email_to_admin($data['email'], $password) == false) {
+                                      $msg = 'done_but_not_sent';
+                                  } else {
+                                      $msg = 'done_and_sent';
+                                  }
+                              } else {
+                                  $msg = 'done_and_sent';
+                              }
+                          }
+                          echo $msg;
+                      }
+                  } else {
+                      echo 'Disallowed charecter : " ' . $char . ' " in the POST';
+                  }
+              }
+          } else if ($para1 == 'registration') {
+              if ($this->crud_model->get_settings_value('general_settings', 'vendor_system') !== 'ok') {
+                  redirect(base_url());
+              }
+              if ($this->crud_model->get_settings_value('general_settings', 'captcha_status', 'value') == 'ok') {
+                  $page_data['recaptcha_html'] = $this->recaptcha->render();
+              }
+              $page_data['page_name'] = "supplier/register";
+              $page_data['asset_page'] = "register";
+              $page_data['page_title'] = translate('registration');
+              $this->load->view('front/index', $page_data);
+          }
+  
+      }
+
+
+
+
+      
+      /* FUNCTION: Concerning Login */
+      function distributor_logup($para1 = "", $para2 = "")
+      {
+          if ($this->crud_model->get_settings_value('general_settings', 'captcha_status', 'value') == 'ok') {
+              $this->load->library('recaptcha');
+          }
+          $this->load->library('form_validation');
+          if ($para1 == "add_info") {
+              $msg = '';
+              $this->load->library('form_validation');
+              $safe = 'yes';
+              $char = '';
+              foreach ($_POST as $k => $row) {
+                  if (preg_match('/[\'^":()}{#~><>|=¬]/', $row, $match)) {
+                      if ($k !== 'password1' && $k !== 'password2') {
+                          $safe = 'no';
+                          $char = $match[0];
+                      }
+                  }
+              }
+  
+              $this->form_validation->set_rules('name', 'First Name', 'required');
+              $this->form_validation->set_rules('email', 'Email', 'valid_email|required|is_unique[vendor.email]', array('required' => 'You have not provided %s.', 'is_unique' => 'This %s already exists.'));
+              $this->form_validation->set_rules('password1', 'Password', 'required|matches[password2]');
+              $this->form_validation->set_rules('password2', 'Confirm Password', 'required');
+              $this->form_validation->set_rules('address1', 'Address Line 1', 'required');
+              $this->form_validation->set_rules('display_name', 'Display Name', 'required');
+              $this->form_validation->set_rules('state', 'State', 'required');
+              $this->form_validation->set_rules('country', 'Country', 'required');
+              $this->form_validation->set_rules('city', 'City', 'required');
+              $this->form_validation->set_rules('zip', 'Zip', 'required');
+              $this->form_validation->set_rules('terms_check', 'Terms & Conditions', 'required', array('required' => translate('you_must_agree_with_terms_&_conditions')));
+              if ($this->form_validation->run() == FALSE) {
+                  echo validation_errors();
+              } else {
+                  if ($safe == 'yes') {
+                      if ($this->crud_model->get_settings_value('general_settings', 'captcha_status', 'value') == 'ok') {
+                          $captcha_answer = $this->input->post('g-recaptcha-response');
+                          $response = $this->recaptcha->verifyResponse($captcha_answer);
+                          if ($response['success']) {
+                              $data['name'] = $this->input->post('name');
+                              $data['email'] = $this->input->post('email');
+                              $data['address1'] = $this->input->post('address1');
+                              $data['address2'] = $this->input->post('address2');
+                              $data['company'] = $this->input->post('company');
+                              $data['display_name'] = $this->input->post('display_name');
+                              $data['state'] = $this->input->post('state');
+                              $data['country'] = $this->input->post('country');
+                              $data['city'] = $this->input->post('city');
+                              $data['zip'] = $this->input->post('zip');
+                              $data['create_timestamp'] = time();
+                              $data['approve_timestamp'] = 0;
+                              $data['approve_timestamp'] = 0;
+                              $data['membership'] = 0;
+                              $data['status'] = 'pending';
+                              $data['created_by'] = $this->input->post('created_user');
+                              if ($this->input->post('password1') == $this->input->post('password2')) {
+                                  $password = $this->input->post('password1');
+                                  $data['password'] = sha1($password);
+                                  $this->db->insert('vendor', $data);
+                                  $msg = 'done';
+                                  if ($this->email_model->account_opening('vendor', $data['email'], $password) == false) {
+                                      $msg = 'done_but_not_sent';
+                                  } else {
+                                      $msg = 'done_and_sent';
+                                  }
+                              }
+                              echo $msg;
+                          } else {
+                              echo translate('please_fill_the_captcha');
+                          }
+                      } else {
+                          $data['name'] = $this->input->post('name');
+                          $data['email'] = $this->input->post('email');
+                          $data['address1'] = $this->input->post('address1');
+                          $data['address2'] = $this->input->post('address2');
+                          $data['company'] = $this->input->post('company');
+                          $data['display_name'] = $this->input->post('display_name');
+                          $data['state'] = $this->input->post('state');
+                          $data['country'] = $this->input->post('country');
+                          $data['city'] = $this->input->post('city');
+                          $data['zip'] = $this->input->post('zip');
+                          $data['create_timestamp'] = time();
+                          $data['approve_timestamp'] = 0;
+                          $data['approve_timestamp'] = 0;
+                          $data['membership'] = 0;
+                          $data['status'] = 'pending';
+                          $data['created_by'] = $this->input->post('created_user');
+                          if ($this->input->post('password1') == $this->input->post('password2')) {
+                              $password = $this->input->post('password1');
+                              $data['password'] = sha1($password);
+                              $this->db->insert('vendor', $data);
+                              $msg = 'done';
+                              if ($this->email_model->account_opening('vendor', $data['email'], $password) == true) {
+                                  if ($this->email_model->vendor_reg_email_to_admin($data['email'], $password) == false) {
+                                      $msg = 'done_but_not_sent';
+                                  } else {
+                                      $msg = 'done_and_sent';
+                                  }
+                              } else {
+                                  $msg = 'done_and_sent';
+                              }
+                          }
+                          echo $msg;
+                      }
+                  } else {
+                      echo 'Disallowed charecter : " ' . $char . ' " in the POST';
+                  }
+              }
+          } else if ($para1 == 'registration') {
+              if ($this->crud_model->get_settings_value('general_settings', 'vendor_system') !== 'ok') {
+                  redirect(base_url());
+              }
+              if ($this->crud_model->get_settings_value('general_settings', 'captcha_status', 'value') == 'ok') {
+                  $page_data['recaptcha_html'] = $this->recaptcha->render();
+              }
+              $page_data['page_name'] = "distributor/register";
+              $page_data['asset_page'] = "register";
+              $page_data['page_title'] = translate('registration');
+              $this->load->view('front/index', $page_data);
+          }
+  
+      }
+
     /* FUNCTION: Logout set */
     function logout()
     {

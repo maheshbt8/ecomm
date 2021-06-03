@@ -34,6 +34,10 @@
 <link rel="stylesheet" href="<?php echo base_url();?>template/assests/css/font-awesome.min.css">
 <style>
 	.header{border-bottom:0px solid}
+	.dropdown-item{
+		width: auto !important;
+		border-right: none !important;
+	}
 	</style>
 	<div class="header-most-top">
 		<p>Grocery Offer Zone Top Deals & Discounts</p>
@@ -49,8 +53,8 @@
                             $home_top_logo = $this->db->get_where('ui_settings',array('type' => 'home_top_logo'))->row()->value;
                         ?>
                         <a href="<?php echo base_url();?>">
-						<span>G</span>rocery
-						<span>S</span>hoppy
+						<span>S</span>mart
+						<span>S</span>hopp
                             <img src="<?php echo base_url(); ?>uploads/logo_image/logo_<?php echo $home_top_logo; ?>.png" alt="SuperShop"/>
 					</a>
 				</h1>
@@ -90,11 +94,17 @@
 										<b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu agile_short_dropdown">
-										<li>
+										<li class="dropdown-item">
 											<a href="<?php echo base_url(); ?>/home/login_set/registration">Customer Registration</a>
 										</li>
-										<li>
+										<li class="dropdown-item">
 											<a href="<?php echo base_url(); ?>/home/vendor_logup/registration">Vendor Registration</a>
+										</li>
+										<li class="dropdown-item">
+											<a href="<?php echo base_url(); ?>/home/supplier_logup/registration">Supplier Registration</a>
+										</li>
+										<li class="dropdown-item">
+											<a href="<?php echo base_url(); ?>/home/distributor_logup/registration">Distributor Registration</a>
 										</li>
 									</ul>
 								</li>
