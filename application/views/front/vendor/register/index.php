@@ -33,6 +33,7 @@
                             <div class="form-group">
                                 <input class="form-control required" name="name" type="text" placeholder="<?php echo translate('name');?>" data-toggle="tooltip" title="<?php echo translate('name');?>">
                             </div>
+                            <input type="hidden" name="created_user" value="<?php echo ((isset($_GET['created_user']) && $_GET['created_user'] != '')? urldecode(base64_decode(base64_decode($_GET['created_user']))) : NULL);?>">
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">

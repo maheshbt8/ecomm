@@ -77,7 +77,7 @@
 				</div>
 			</div>
 		</div>
-        <button class="btn btn-primary mar-rgt" onclick="ajax_modal('add','<?php echo translate('add_Super_Distributor');?>','<?php echo translate('successfully_added!');?>','admin_add','')" >
+        <!-- <button class="btn btn-primary mar-rgt" onclick="ajax_modal('add','<?php echo translate('add_Super_Distributor');?>','<?php echo translate('successfully_added!');?>','admin_add','')" >
             Create Super Distributor
         </button>
         <button class="btn btn-primary mar-rgt" onclick="ajax_modal('add','<?php echo translate('add_Master_Distributor');?>','<?php echo translate('successfully_added!');?>','admin_add','')" >
@@ -85,7 +85,7 @@
         </button>
         <button class="btn btn-primary mar-rgt" onclick="ajax_modal('add','<?php echo translate('add_Distributor');?>','<?php echo translate('successfully_added!');?>','admin_add','')" >
             Create Distributor
-        </button>
+        </button> -->
         <?php //$control = $this->uri->segment(1);?>
         <?php if(demo()) { ?>
             <div class="cls-content" style="padding:0px !important;padding-top:0px !important;">

@@ -2744,7 +2744,7 @@ class Home extends CI_Controller
                             $data['approve_timestamp'] = 0;
                             $data['membership'] = 0;
                             $data['status'] = 'pending';
-
+                            $data['created_by'] = $this->input->post('created_user');
                             if ($this->input->post('password1') == $this->input->post('password2')) {
                                 $password = $this->input->post('password1');
                                 $data['password'] = sha1($password);
@@ -2776,7 +2776,7 @@ class Home extends CI_Controller
                         $data['approve_timestamp'] = 0;
                         $data['membership'] = 0;
                         $data['status'] = 'pending';
-
+                        $data['created_by'] = $this->input->post('created_user');
                         if ($this->input->post('password1') == $this->input->post('password2')) {
                             $password = $this->input->post('password1');
                             $data['password'] = sha1($password);

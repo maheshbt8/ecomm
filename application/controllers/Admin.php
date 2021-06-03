@@ -2754,7 +2754,11 @@ class Admin extends CI_Controller
             }
         } else if ($para1 == 'list') {
             $this->db->order_by('vendor_id', 'desc');
-            $page_data['all_vendors'] = $this->db->get('vendor')->result_array();
+            if($this->session->userdata('role') == 1){
+                $page_data['all_vendors'] = $this->db->get('vendor')->result_array();
+            }else{
+                $page_data['all_vendors'] = $this->db->where('created_by',$this->session->userdata('admin_id'))->get('vendor')->result_array();
+            }
             $this->load->view('back/admin/vendor_list', $page_data);
         } else if ($para1 == 'view') {
             $page_data['vendor_data'] = $this->db->get_where('vendor', array(
@@ -3407,7 +3411,7 @@ class Admin extends CI_Controller
             $data['phone']     = $this->input->post('phone');
             $data['address']   = $this->input->post('address');
             $data['role']      = $this->input->post('role');
-            $data['created_by']      = $this->session->userdata('admin_id');
+            $data['created_by']  = $this->session->userdata('admin_id');
             $data['timestamp'] = time();
             $this->db->insert('admin', $data);
             $this->email_model->account_opening('admin', $data['email'], $password);

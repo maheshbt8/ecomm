@@ -53,9 +53,19 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	include_once './application/libraries/vendor/autoload.php';
-
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
+include_once './application/libraries/vendor/autoload.php';
+switch ($_SERVER['SERVER_NAME']){
+    case 'localhost':
+        $env = "development";
+        break;
+    case '192.168.1.16':
+        $env = "development";
+        break;
+    default:
+        $env = "production";
+        break;
+}
+define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 	//define('CFG_TIME_ZONE', 'Asia/Dacca');
 /*
  *---------------------------------------------------------------

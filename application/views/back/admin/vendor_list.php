@@ -6,7 +6,9 @@
                 <th><?php echo translate('display_name');?></th>
                 <th><?php echo translate('name');?></th>
                 <th><?php echo translate('status');?></th>
-
+                <?php if($this->session->userdata('role') == 1){?>
+                <th><?php echo translate('Added By');?></th>
+                <?php }?>
                 <th class="text-right"><?php echo translate('options');?></th>
             </tr>
         </thead>				
@@ -40,11 +42,15 @@
                 	<?php echo $row['status']; ?>
                 </div>
             </td>
+            <?php if($this->session->userdata('role') == 1){?>
+            <td><?php echo $this->crud_model->get_type_name_by_id('admin',$row['created_by']);?></td>
+            <?php }?>
             <td class="text-right">
                 <a class="btn btn-dark btn-xs btn-labeled fa fa-user" data-toggle="tooltip" 
                     onclick="ajax_modal('view','<?php echo translate('view_profile'); ?>','<?php echo translate('successfully_viewed!'); ?>','vendor_view','<?php echo $row['vendor_id']; ?>')" data-original-title="View" data-container="body">
                         <?php echo translate('profile');?>
                 </a>
+                <?php if($this->session->userdata('role') == 1){?>
                 <a class="btn btn-success btn-xs btn-labeled fa fa-check" data-toggle="tooltip" 
                     onclick="ajax_modal('approval','<?php echo translate('vendor_approval'); ?>','<?php echo translate('successfully_viewed!'); ?>','vendor_approval','<?php echo $row['vendor_id']; ?>')" data-original-title="View" data-container="body">
                         <?php echo translate('approval');?>
@@ -57,6 +63,7 @@
                     data-original-title="Delete" data-container="body">
                         <?php echo translate('delete');?>
                 </a>
+                <?php }?>
             </td>
         </tr>
         <?php

@@ -13,7 +13,17 @@
 						<!--Button-->
 						<button class="btn btn-primary btn-labeled fa fa-plus-circle pull-right mar-rgt"
                         	onclick="ajax_modal('add','<?php echo translate('add_staff');?>','<?php echo translate('successfully_added!');?>','admin_add','')" >
-							<?php echo translate('create_admin');?>
+						<?php if($this->session->userdata('role') == 1){
+                    		echo "Create Admin";
+            			}elseif($this->session->userdata('role') == 5){
+            				echo "Create Project Manager";
+            			}elseif($this->session->userdata('role') == 6){
+            				echo "Create Super Distributor";
+            			}elseif($this->session->userdata('role') == 7){
+            				echo "Create Master Distributor";
+            			}elseif($this->session->userdata('role') == 8){
+            				echo "Create Distributor";
+            			}?>
 						</button>
 					</div>
 					<br>

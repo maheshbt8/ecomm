@@ -53,7 +53,7 @@
                 </div>
             </div>
             <?php if($this->session->userdata('role') == 1){?>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-4 control-label" >
                     <?php echo translate('role'); ?>
                 </label>
@@ -61,7 +61,12 @@
                     <?php echo $this->
                     crud_model->select_html('role','role','name','add','demo-chosen-select required'); ?>
                 </div>
-            </div>
+            </div> -->
+                    <input type="hidden" name="role" value="5">
+            <?php }elseif($this->session->userdata('role') == 5){?>
+                    <input type="hidden" name="role" value="6">
+            <?php }elseif($this->session->userdata('role') == 6){?>
+                    <input type="hidden" name="role" value="7">
             <?php }elseif($this->session->userdata('role') == 7){?>
                     <input type="hidden" name="role" value="8">
             <?php }elseif($this->session->userdata('role') == 8){?>
