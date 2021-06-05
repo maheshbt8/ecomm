@@ -8,7 +8,7 @@
                     </a>
                 </div> -->
 				        <?php
-                    echo form_open(base_url() . 'home/registration/add_info/', array(
+                    echo form_open(base_url() . 'home/distributor_logup/add_info/', array(
                         'class' => 'form-login',
                         'method' => 'post',
                         'id' => 'sign_form'
@@ -22,35 +22,15 @@
                       <?php //echo translate('customer_registration');?>
                         <div class="option">
                       	<?php echo translate('already_a_member_?_click_to_');?>
-                        <?php
-			                     if ($this->crud_model->get_type_name_by_id('general_settings','58','value') !== 'ok') { ?>
-                              <a href="<?php echo base_url(); ?>home/login_set/login">
+                              <a href="<?php echo base_url(); ?>admin">
                                   <?php echo translate('login');?>!
                               </a>
-                        <?php
-									         }
-                           else { ?>
-                                <a href="<?php echo base_url(); ?>home/login_set/login">
-                                    <?php echo translate('login');?>! <?php echo translate('as_customer');?>
-                                </a>
-                              <?php echo translate('_or_');?>
-                                <a href="<?php echo base_url(); ?>home/vendor_logup/registration">
-                                    <?php echo translate('sign_up');?>! <?php echo translate('as_vendor');?>
-                                </a>
-                              <?php
-          									}
-          								?>
                         </div>
                       </div>
                       <hr>
                       <div class="col-md-6">
                           <div class="form-group">
-                              <input class="form-control required" name="username" type="text" placeholder="<?php echo translate('first_name');?>" data-toggle="tooltip" title="<?php echo translate('first_name');?>">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <input class="form-control required" name="surname" type="text" placeholder="<?php echo translate('last_name');?>" data-toggle="tooltip" title="<?php echo translate('last_name');?>">
+                              <input class="form-control required" name="username" type="text" placeholder="<?php echo translate('name');?>" data-toggle="tooltip" title="<?php echo translate('name');?>">
                           </div>
                       </div>
                       <div class="col-md-6">
@@ -70,40 +50,14 @@
                               <input class="form-control pass1 required" type="password" name="password1" placeholder="<?php echo translate('password');?>" data-toggle="tooltip" title="<?php echo translate('password');?>">
                           </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-8">
                           <div class="form-group">
-                              <input class="form-control pass2 required" type="password" name="password2" placeholder="<?php echo translate('confirm_password');?>" data-toggle="tooltip" title="<?php echo translate('confirm_password');?>">
-                          </div>
-                          <div id='pass_note'></div>
-                      </div>
-                      <div class="col-md-12">
-                          <div class="form-group">
-                              <input class="form-control required" name="address1" type="text" placeholder="<?php echo translate('address_line_1');?>" data-toggle="tooltip" title="<?php echo translate('address_line_1');?>">
+                              <input class="form-control" type="text" name="refer" placeholder="<?php echo translate('Enter Referer Details');?>">
                           </div>
                       </div>
-                      <div class="col-md-12">
+                      <div class="col-md-2">
                           <div class="form-group">
-                              <input class="form-control required" name="address2" type="text" placeholder="<?php echo translate('address_line_2');?>" data-toggle="tooltip" title="<?php echo translate('address_line_2');?>">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <input class="form-control required" type="text" name="city" placeholder="<?php echo translate('city');?>" data-toggle="tooltip" title="<?php echo translate('city');?>">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <input class="form-control required" type="text" name="state" placeholder="<?php echo translate('state');?>" data-toggle="tooltip" title="<?php echo translate('state');?>">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <input class="form-control required" type="text" name="country" placeholder="<?php echo translate('country');?>" data-toggle="tooltip" title="<?php echo translate('country');?>">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="">
-                              <input class="form-control required" name="zip" type="text" placeholder="<?php echo translate('zip');?>" data-toggle="tooltip" title="<?php echo translate('zip');?>">
+                              <input class="btn btn-info" name="refer" value="Check">
                           </div>
                       </div>
                       <div class="col-md-12 terms">

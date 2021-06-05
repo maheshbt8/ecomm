@@ -80,7 +80,37 @@ include 'script_texts.php';
 <?php
 include 'includes/bottom/index.php';
 ?>
-
+    <!-- Popup: Shopping cart items -->
+<!-- <div class="modal fade popup-cart" id="popup-cart" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="container">
+            <div class="cart-items">
+                <div class="cart-items-inner">
+                    <span class="top_carted_list">
+                    </span>
+                    <div class="media">
+                        <p class="pull-right item-price shopping-cart__total"></p>
+                        <div class="media-body">
+                            <h4 class="media-heading item-title summary">
+                                Subtotal                            </h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-body">
+                            <div>
+                                <span class="btn btn-theme-dark" data-dismiss="modal">
+                                    Close</span>
+                                <a href="https://localhost/ecom/home/cart_checkout" class="btn  btn-theme-transparent btn-call-checkout">
+                                    Checkout                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+    <!-- /Popup: Shopping cart items -->
 
 <!-- for demo only -->
 
