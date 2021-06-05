@@ -15,6 +15,12 @@
 	$footer_text =  $this->db->get_where('general_settings',array('type' => 'footer_text'))->row()->value;
 	$footer_category =  json_decode($this->db->get_where('general_settings',array('type' => 'footer_category'))->row()->value);
 ?>
+<style>
+.footer1 {
+  
+    padding: 0px;
+}
+</style>
 <footer class="footer1">
 	<div class="footer1-widgets">
 		<div class="container">
