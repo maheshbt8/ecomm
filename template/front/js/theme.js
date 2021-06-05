@@ -104,7 +104,7 @@ jQuery(document).ready(function () {
     // ---------------------------------------------------------------------------------------
     $(window).scroll(function () {
         if ($(this).scrollTop() > 1) {
-            toTop.css({bottom: '15px'});
+            toTop.css({bottom: '65px'});
         } else {
             toTop.css({bottom: '-100px'});
         }
