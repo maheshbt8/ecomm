@@ -51,17 +51,15 @@
 						<h4 class="widget-title"><?php echo translate('categories');?></h4>
 						<ul>
 							<?php
-								foreach($footer_category as $row){
-									if($this->crud_model->if_publishable_category($row)){
-										
+								$all_category = $this->db->get('category')->result_array();
+								foreach($all_category as $row)
+								{
+									if($this->crud_model->if_publishable_category($row['category_id'])){
 							?>
 								<li>
-									<a href="<?php echo base_url(); ?>home/category/<?php echo $row; ?>">
-										<?php
-											echo $this->crud_model->get_type_name_by_id('category',$row,'category_name');
-										
-										?>
-									</a>
+										 <a  href="<?php echo base_url(); ?>home/category/<?php echo $row['category_id']; ?>">
+                                    <?php echo $row['category_name']; ?>
+                                </a>
 								</li>
 							<?php
 									}

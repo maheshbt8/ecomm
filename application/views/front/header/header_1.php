@@ -40,7 +40,8 @@
 	}
 	</style>
 	<div class="header-most-top">
-		<p>Grocery Offer Zone Top Deals & Discounts</p>
+		<p>                        <a href="<?php echo base_url();?>">
+Smart Shopp Offer Zone Top Deals & Discounts</a></p>
 	</div>
 	<!-- //top-header -->
 	<!-- header-bot-->
