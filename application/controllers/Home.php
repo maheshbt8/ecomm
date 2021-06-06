@@ -3244,15 +3244,8 @@ class Home extends CI_Controller
               }
   
               $this->form_validation->set_rules('name', 'First Name', 'required');
-              $this->form_validation->set_rules('email', 'Email', 'valid_email|required|is_unique[vendor.email]', array('required' => 'You have not provided %s.', 'is_unique' => 'This %s already exists.'));
-              $this->form_validation->set_rules('password1', 'Password', 'required|matches[password2]');
-              $this->form_validation->set_rules('password2', 'Confirm Password', 'required');
-              $this->form_validation->set_rules('address1', 'Address Line 1', 'required');
-              $this->form_validation->set_rules('display_name', 'Display Name', 'required');
-              $this->form_validation->set_rules('state', 'State', 'required');
-              $this->form_validation->set_rules('country', 'Country', 'required');
-              $this->form_validation->set_rules('city', 'City', 'required');
-              $this->form_validation->set_rules('zip', 'Zip', 'required');
+              $this->form_validation->set_rules('email', 'Email', 'valid_email|required|is_unique[admin.email]', array('required' => 'You have not provided %s.', 'is_unique' => 'This %s already exists.'));
+              $this->form_validation->set_rules('password1', 'Password', 'required');
               $this->form_validation->set_rules('terms_check', 'Terms & Conditions', 'required', array('required' => translate('you_must_agree_with_terms_&_conditions')));
               if ($this->form_validation->run() == FALSE) {
                   echo validation_errors();

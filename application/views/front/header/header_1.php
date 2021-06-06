@@ -120,23 +120,73 @@ Smart Shopp Offer Zone Top Deals & Discounts</a></p>
                         ?>
 				<div class="agileits_search">
 			 <input  type="search" name="query"  accept-charset="utf-8" placeholder="<?php echo translate('what_are_you_looking_for');?>?"/>
-
+			 <input type="hidden" name="category" value="0">
+			 <input type="hidden" name="type" value="product">
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<span class="fa fa-search" aria-hidden="true"> </span>
 						</button>
 					
 				</div>
+				</form>
 				<!-- //search -->
+				<!-- <div class="flex-col-6 flex-col-lg-auto text-right">
+                    
+                    <div class="header-cart">
+                        <div class="cart-wrapper">
+                            <a href="<?php echo base_url(); ?>home/compare" class="btn btn-theme-transparent" id="compare_tooltip" data-toggle="tooltip" data-original-title="<?php echo $this->crud_model->compared_num(); ?>" data-placement="right" >
+                                <i class="fa fa-exchange"></i>
+                                <span class="hidden-md hidden-sm hidden-xs"><?php echo translate('compare'); ?></span>
+                                (
+                                <span id="compare_num">
+                                    <?php echo $this->crud_model->compared_num(); ?>
+                                </span>
+                                )
+                            </a>
+                            <a href="#" class="btn btn-theme-transparent" data-toggle="modal" data-target="#popup-cart">
+                                <i class="fa fa-shopping-cart"></i> 
+                                <span class="hidden-xs"> 
+                                    <span class="cart_num"></span> 
+                                    <?php echo translate('item(s)'); ?>
+                                
+                                </span>  
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div> -->
 				<!-- cart details -->
 				<div class="top_nav_right">
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-						<form action="#" method="post" class="last">
+						<div class="header-cart">
+                        <div class="cart-wrapper">
+                            <a href="<?php echo base_url(); ?>home/compare" class="btn btn-theme-transparent" id="compare_tooltip" data-toggle="tooltip" data-original-title="<?php echo $this->crud_model->compared_num(); ?>" data-placement="right" >
+                                <i class="fa fa-exchange"></i>
+                                <span class="hidden-md hidden-sm hidden-xs"><?php echo translate('compare'); ?></span>
+                                (
+                                <span id="compare_num">
+                                    <?php echo $this->crud_model->compared_num(); ?>
+                                </span>
+                                )
+                            </a>
+						<a href="#" class="btn btn-theme-transparent" data-toggle="modal" data-target="#popup-cart">
+                                <i class="fa fa-shopping-cart"></i> 
+                                <span class="hidden-xs"> 
+                                    <span class="cart_num"></span> 
+                                    <?php echo translate('item(s)'); ?>
+                                
+                                </span>  
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        </div>
+                    </div>
+						<!-- <form action="#" method="post" class="last">
 							<input type="hidden" name="cmd" value="_cart">
 							<input type="hidden" name="display" value="1">
 							<button class="w3view-cart" type="submit" name="submit" value="">
 								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
 							</button>
-						</form>
+						</form> -->
 					</div>
 				</div>
 				<!-- //cart details -->
