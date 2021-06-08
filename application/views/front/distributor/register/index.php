@@ -28,9 +28,10 @@
                         </div>
                       </div>
                       <hr>
+					  
                       <div class="col-md-6">
                           <div class="form-group">
-                              <input class="form-control required" name="username" type="text" placeholder="<?php echo translate('name');?>" data-toggle="tooltip" title="<?php echo translate('name');?>">
+                              <input class="form-control required" name="name" type="text" placeholder="<?php echo translate('name');?>" data-toggle="tooltip" title="<?php echo translate('name');?>">
                           </div>
                       </div>
                       <div class="col-md-6">
@@ -46,20 +47,27 @@
                       </div>
 
                       <div class="col-md-6">
-                          <div class="form-group">
-                              <input class="form-control pass1 required" type="password" name="password1" placeholder="<?php echo translate('password');?>" data-toggle="tooltip" title="<?php echo translate('password');?>">
-                          </div>
-                      </div>
+                            <div class="form-group">
+                                <input class="form-control pass1 required" type="password" name="password1" placeholder="<?php echo translate('password');?>" data-toggle="tooltip" title="<?php echo translate('password');?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control pass2 required" type="password" name="password2" placeholder="<?php echo translate('confirm_password');?>" data-toggle="tooltip" title="<?php echo translate('confirm_password');?>">
+                            </div>
+                            <div id='pass_note'></div> 
+                        </div>
                       <div class="col-md-8">
                           <div class="form-group">
-                              <input class="form-control" type="text" name="refer" placeholder="<?php echo translate('Enter Referer Details');?>">
+                              <input class="form-control" id="datae" type="text" name="refer" placeholder="<?php echo translate('Enter Referer Details');?>">
                           </div>
                       </div>
                       <div class="col-md-2">
                           <div class="form-group">
-                              <input class="btn btn-info" name="refer" value="Check">
+                              <input class="btn btn-info"  value="Check"  id="checkData">
                           </div>
                       </div>
+					  <div id="customers-list"></div>
                       <div class="col-md-12 terms">
                           <input  name="terms_check" type="checkbox" value="ok" >
                           <?php echo translate('i_agree_with');?>
@@ -148,3 +156,4 @@
 		vertical-align:middle;
 	}
 </style>
+	

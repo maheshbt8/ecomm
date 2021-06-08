@@ -3245,8 +3245,10 @@ class Home extends CI_Controller
   
               $this->form_validation->set_rules('name', 'First Name', 'required');
               $this->form_validation->set_rules('email', 'Email', 'valid_email|required|is_unique[admin.email]', array('required' => 'You have not provided %s.', 'is_unique' => 'This %s already exists.'));
-              $this->form_validation->set_rules('password1', 'Password', 'required');
-              $this->form_validation->set_rules('terms_check', 'Terms & Conditions', 'required', array('required' => translate('you_must_agree_with_terms_&_conditions')));
+              $this->form_validation->set_rules('password1', 'Password', 'required|matches[password2]');
+              $this->form_validation->set_rules('password2', 'Confirm Password', 'required');
+                         
+			 $this->form_validation->set_rules('terms_check', 'Terms & Conditions', 'required', array('required' => translate('you_must_agree_with_terms_&_conditions')));
               if ($this->form_validation->run() == FALSE) {
                   echo validation_errors();
               } else {
@@ -3257,7 +3259,9 @@ class Home extends CI_Controller
                           if ($response['success']) {
                               $data['name'] = $this->input->post('name');
                               $data['email'] = $this->input->post('email');
-                              $data['address1'] = $this->input->post('address1');
+							 $data['phone'] = $this->input->post('phone');
+
+                            /*  $data['address1'] = $this->input->post('address1');
                               $data['address2'] = $this->input->post('address2');
                               $data['company'] = $this->input->post('company');
                               $data['display_name'] = $this->input->post('display_name');
@@ -3270,13 +3274,16 @@ class Home extends CI_Controller
                               $data['approve_timestamp'] = 0;
                               $data['membership'] = 0;
                               $data['status'] = 'pending';
-                              $data['created_by'] = $this->input->post('created_user');
+                              $data['created_by'] = $this->input->post('created_user'); */
                               if ($this->input->post('password1') == $this->input->post('password2')) {
                                   $password = $this->input->post('password1');
                                   $data['password'] = sha1($password);
-                                  $this->db->insert('vendor', $data);
+								 // print_r($this->db->last_query());exit;
+                                  $this->db->insert('admin', $data);
                                   $msg = 'done';
-                                  if ($this->email_model->account_opening('vendor', $data['email'], $password) == false) {
+								  							  
+
+                                  if ($this->email_model->account_opening('admin', $data['email'], $password) == false) {
                                       $msg = 'done_but_not_sent';
                                   } else {
                                       $msg = 'done_and_sent';
@@ -3289,7 +3296,9 @@ class Home extends CI_Controller
                       } else {
                           $data['name'] = $this->input->post('name');
                           $data['email'] = $this->input->post('email');
-                          $data['address1'] = $this->input->post('address1');
+						$data['phone'] = $this->input->post('phone');
+
+                        /*  $data['address1'] = $this->input->post('address1');
                           $data['address2'] = $this->input->post('address2');
                           $data['company'] = $this->input->post('company');
                           $data['display_name'] = $this->input->post('display_name');
@@ -3303,12 +3312,14 @@ class Home extends CI_Controller
                           $data['membership'] = 0;
                           $data['status'] = 'pending';
                           $data['created_by'] = $this->input->post('created_user');
+						 */
                           if ($this->input->post('password1') == $this->input->post('password2')) {
                               $password = $this->input->post('password1');
                               $data['password'] = sha1($password);
-                              $this->db->insert('vendor', $data);
+                              $this->db->insert('admin', $data);
+						
                               $msg = 'done';
-                              if ($this->email_model->account_opening('vendor', $data['email'], $password) == true) {
+                              if ($this->email_model->account_opening('admin', $data['email'], $password) == true) {
                                   if ($this->email_model->vendor_reg_email_to_admin($data['email'], $password) == false) {
                                       $msg = 'done_but_not_sent';
                                   } else {
@@ -6554,10 +6565,18 @@ class Home extends CI_Controller
         $this->load->model('email_model');
         $this->email_model->do_email($from, $from_name, $to, $sub, $msg);
     }
-
-    function test(){
-       // $pac = $this->crud_model->get_product_affiliation_codes_from_cookies();
-       //
+ 
+    function getDestributorDetail(){
+		//print_r($this->input->post());
+		 $email = $this->input->post('email');
+		// echo $email;
+				// $email = "admin@admin.com";
+      $response = $this->db->get_where('admin', ['email'=>$email])->row_array();
+	 // print_r($this->db->last_query());
+	  print_r($response);die;
+	  //$query=$this->db->query("select * from admin where email ="$email"");
+		//return $query->result();
+       ///".
        // echo "<pre>";
        // print_r($pac);
        // echo "</pre>";

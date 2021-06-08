@@ -3059,5 +3059,11 @@ class Crud_model extends CI_Model
     {
         return $this->db->select('*')->from('product_affiliation_code_use')->where('code', $code)->where('affiliation_user_id',$affiliation_user_id)->limit(1)->get()->num_rows() > 0 ? true : false;
     }
+	
+	 function get_destributor_details_byemail($email)
+    {
+        return $this->db->select('*')->from('admin')->where('email', $email)->get()->row_array();
+    }
+
 
 }

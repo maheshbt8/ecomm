@@ -1626,5 +1626,23 @@
 				}
 			});	
 		}
-
+			$(document).on('click','#checkData',function(){
+							
+							var email = $('#datae').val();
+							///console.log(email);
+							alert(email);
+							$.ajax({
+									type: "POST",
+									url: '<?php echo base_url(); ?>home/getDestributorDetail/',
+									data:{email:email},
+									success: function(response){
+										$("#customers-list").html(data);
+											  alert(response);
+										console.log(response);
+									}
+								  });
+							
+						}); 
+						
+						
 </script>
