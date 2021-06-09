@@ -56,6 +56,14 @@ label{
     letter-spacing: 2px;
     background: #1accfd;
 }
+.header-most-top a{
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px;
+    letter-spacing: 2px;
+    background: #1accfd;
+}
 /* //top-header */
 /*-- header-bottom --*/
 /*-- Header Lists --*/

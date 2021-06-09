@@ -33,6 +33,9 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url();?>template/assests/css/font-awesome.min.css">
 <style>
+	.info{
+		min-height: 400px;
+	}
 	.header{border-bottom:0px solid}
 	.dropdown-item{
 		width: auto !important;
@@ -156,6 +159,7 @@ Smart Shopp Offer Zone Top Deals & Discounts</a></p>
                     
                 </div> -->
 				<!-- cart details -->
+				
 				<div class="top_nav_right">
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
 						<div class="header-cart">
@@ -169,7 +173,7 @@ Smart Shopp Offer Zone Top Deals & Discounts</a></p>
                                 </span>
                                 )
                             </a> -->
-							<a href="#" class="btn btn-theme-transparent" data-toggle="modal" data-target="#popup-cart">
+							<a href="#" class="btn btn-theme-transparent" onClick= "cartFunction()" data-toggle="modal" data-target="#popup-cart">
 	                            <i class="fa fa-shopping-cart"></i> 
 	                            <span class="hidden-xs"> 
 	                                <span class="cart_num"></span> 
@@ -409,6 +413,7 @@ Smart Shopp Offer Zone Top Deals & Discounts</a></p>
 	<!-- //navigation -->
 	
 		<script>
+		
 			$(".dropdown ").on("click", function() {
 
 
@@ -624,7 +629,12 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 					scrollTop: $(this.hash).offset().top
 				}, 1000);
 			});
+			
 		});
+		function cartFunction(){
+			$("#popup-cart").show();
+				//alert("jhfjdhgnoi jkk ");
+			}
 	</script>
 	<!-- //end-smooth-scrolling -->
 
