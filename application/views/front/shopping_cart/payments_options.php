@@ -115,7 +115,8 @@
 
                 </label>
             </div>
-    <?php /*}
+    <?php }
+    /*
         if($vp_set == 'ok'){
             ?>
             <div class="cc-selector col-sm-3">
