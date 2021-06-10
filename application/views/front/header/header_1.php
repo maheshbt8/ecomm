@@ -164,7 +164,7 @@ Smart Shopp Offer Zone Top Deals & Discounts</a></p>
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
 						<div class="header-cart">
                         <div class="cart-wrapper">
-                            <!-- <a href="<?php echo base_url(); ?>home/compare" class="btn btn-theme-transparent" id="compare_tooltip" data-toggle="tooltip" data-original-title="<?php echo $this->crud_model->compared_num(); ?>" data-placement="right" >
+                            <a href="<?php echo base_url(); ?>home/compare" class="btn btn-theme-transparent" id="compare_tooltip" data-toggle="tooltip" data-original-title="<?php echo $this->crud_model->compared_num(); ?>" data-placement="right" >
                                 <i class="fa fa-exchange"></i>
                                 <span class="hidden-md hidden-sm hidden-xs"><?php echo translate('compare'); ?></span>
                                 (
@@ -172,7 +172,7 @@ Smart Shopp Offer Zone Top Deals & Discounts</a></p>
                                     <?php echo $this->crud_model->compared_num(); ?>
                                 </span>
                                 )
-                            </a> -->
+                            </a>
 							<a href="#" class="btn btn-theme-transparent" onClick= "cartFunction()" data-toggle="modal" data-target="#popup-cart">
 	                            <i class="fa fa-shopping-cart"></i> 
 	                            <span class="hidden-xs"> 
