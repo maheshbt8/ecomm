@@ -28,7 +28,7 @@
 
 <div class="row">
     <?php
-        if($p_set == 'ok'){ ?>
+        /*if($p_set == 'ok'){ ?>
             <div class="cc-selector col-sm-3">
                 <input id="visa" type="radio" style="display:block;" checked name="payment_type" value="paypal"/>
                 <label class="drinkcard-cc" style="margin-bottom:0px; width:100%; overflow:hidden; " for="visa" onclick="radio_check('visa')">
@@ -36,7 +36,7 @@
 
                 </label>
             </div>
-    <?php }
+    <?php/* }
     if($s_set == 'ok'){
     ?>
         <div class="cc-selector col-sm-3">
@@ -93,7 +93,8 @@
             });
         </script>
 
-    <?php } if($bitcoin_set == 'ok') { ?>
+    <?php } 
+    /*if($bitcoin_set == 'ok') { ?>
 
 
 
@@ -104,7 +105,8 @@
             </label>
         </div>
     <?php
-        } if($c2_set == 'ok'){
+        } */
+        /*if($c2_set == 'ok'){
             ?>
             <div class="cc-selector col-sm-3">
                 <input id="mastercardc2" style="display:block;" type="radio" name="payment_type" value="c2"/>
@@ -114,6 +116,7 @@
                 </label>
             </div>
     <?php }
+    /*
         if($vp_set == 'ok'){
             ?>
             <div class="cc-selector col-sm-3">
@@ -146,7 +149,7 @@
     </div>
     <?php
         } */
-        if($c_set == 'ok'){
+      if($c_set == 'ok'){
             if($this->crud_model->get_type_name_by_id('general_settings','68','value') == 'ok'){
                 ?>
                 <div class="cc-selector col-sm-3">
@@ -161,7 +164,7 @@
             }
     ?>
     <?php
-        if ($this->crud_model->get_type_name_by_id('general_settings','84','value') == 'ok') {
+       /* if ($this->crud_model->get_type_name_by_id('general_settings','84','value') == 'ok') {
             if ($this->session->userdata('user_login') == 'yes') { ?>
                 <div class="cc-selector col-sm-3">
                     <input id="mastercarddd" style="display:block;" type="radio" name="payment_type" value="wallet"/>
@@ -172,7 +175,7 @@
                 </div>
                 <?php
             }
-        }
+        }*/
     ?>
 </div>
 

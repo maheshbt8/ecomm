@@ -62,29 +62,34 @@ $route['limit'] = 'user_api/api_limit';
 $route['key'] = 'user_api/api_key';
 
 
-$route['login'] = 'user_api/login';
-$route['api/v1/user/view'] = 'user_api/view';
-$route['api/v1/user/category_list'] = 'user_api/allCategories';
-$route['api/v1/user/subcategory_list'] = 'user_api/subCategoriesList';
-$route['api/v1/user/subcategory/(:num)'] = 'user_api/subCategory/$1';
-$route['api/v1/user/brands'] = 'user_api/allBrands';
-$route['api/v1/user/latest_vendors'] = 'user_api/latestVendors';
-$route['api/v1/user/vendors_profile/(:num)'] = 'user_api/vendorProfile/$1';
-$route['api/v1/user/latest_featur_products'] = 'user_api/latestFeatureProducts';
-$route['api/v1/user/today_deals_products'] = 'user_api/todayDealsProducts';
-$route['api/v1/user/bundle_products'] = 'user_api/bundleProducts';
-$route['api/v1/user/classified_products'] = 'user_api/ClassifiedProducts';
-$route['api/v1/user/latest_blogs'] = 'user_api/LatestBlogs';
-$route['api/v1/user/banner'] = 'user_api/bannerInformation';
-$route['api/v1/user/blog_category_list'] = 'user_api/BlogCategoryList';
-$route['api/v1/user/blog_category/(:num)'] = 'user_api/blogByCat/$1';
-$route['api/v1/user/blog/(:num)'] = 'user_api/blog/$1';
-$route['api/v1/user/stock/(:any)/(:any)/(:any)']= 'user_api/getStock/$1/$2/$3';
-$route['api/v1/user/productrating/(:num)'] = 'user_api/productRating/$1';
-$route['api/v1/user/product_view/(:num)/(:any)'] = 'user_api/productView/$1/$2';
-$route['api/v1/user/coupon'] = 'user_api/coupon';
-$route['api/v1/user/language'] = 'user_api/getLanguages';
+$route['user/login'] = 'user_api/login';
+$route['user/view'] = 'user_api/view';
+$route['user/category_list'] = 'user_api/allCategories';
+$route['user/subcategory_list'] = 'user_api/subCategoriesList';
+$route['user/subcategory/(:num)'] = 'user_api/subCategory/$1';
+$route['user/brands'] = 'user_api/allBrands';
+$route['user/latest_vendors'] = 'user_api/latestVendors';
+$route['user/vendors_profile/(:num)'] = 'user_api/vendorProfile/$1';
+$route['user/latest_featur_products'] = 'user_api/latestFeatureProducts';
+$route['user/today_deals_products'] = 'user_api/todayDealsProducts';
+$route['user/bundle_products'] = 'user_api/bundleProducts';
+$route['user/classified_products'] = 'user_api/ClassifiedProducts';
+$route['user/latest_blogs'] = 'user_api/LatestBlogs';
+$route['user/banner'] = 'user_api/bannerInformation';
+$route['user/blog_category_list'] = 'user_api/BlogCategoryList';
+$route['user/blog_category/(:num)'] = 'user_api/blogByCat/$1';
+$route['user/blog/(:num)'] = 'user_api/blog/$1';
+$route['user/stock/(:any)/(:any)/(:any)']= 'user_api/getStock/$1/$2/$3';
+$route['user/productrating/(:num)'] = 'user_api/productRating/$1';
+$route['user/product_view/(:num)/(:any)'] = 'user_api/productView/$1/$2';
+$route['user/coupon'] = 'user_api/coupon';
+$route['user/language'] = 'user_api/getLanguages';
 
+/* Admin */
+$route['admin/login'] = 'Admin_api/login';
+$route['admin/view'] = 'Admin_api/view';
+$route['admin/delivery_boy_status/(:num)'] = 'Admin_api/deliveryBoyStatus/$1';
+$route['admin/update_delivery_boy_location'] = 'Admin_api/UpdateDeliveryBoyLocation';
 
 
 
